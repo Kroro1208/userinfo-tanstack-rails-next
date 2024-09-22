@@ -1,7 +1,7 @@
 import api from "../route"
 
 const endpoinsts = {
-    getUser: async () => {
+    getUsers: async () => {
         return await api('users')
     }
 }
