@@ -1,7 +1,7 @@
-import userEndpoinsts from "./user";
+import userEndpoints from "./user";
 
 const endpoints = {
-    users: userEndpoinsts
+    users: userEndpoints
 }
 
 export default endpoints;
