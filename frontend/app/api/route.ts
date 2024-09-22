@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 type ApiOptions = {
-    data?: object,
+    data?: object | string,
     method?: "get" | "put" | "post" | "delete",
     params?: object
 }
@@ -20,6 +20,7 @@ export const api = async (url: string, options: ApiOptions = {}) => {
             data,
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
             },
             method,
             params,
