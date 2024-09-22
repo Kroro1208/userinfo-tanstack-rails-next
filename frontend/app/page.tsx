@@ -2,9 +2,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import Image from "next/image";
-import HomeImg from "../../homeImg.png";
+import HomeImg from "./public/homeImg.png";
 import { Trash2 } from 'lucide-react';
-import endpoints from "./api/users/route";
+import endpoints from "./lib/api/user";
 
 export default function Home() {
   const queryClient = useQueryClient()

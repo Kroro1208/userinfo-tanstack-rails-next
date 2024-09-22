@@ -1,6 +1,6 @@
 "use client"
 
-import endpoints from "@/app/api/users/route";
+import endpoints from "@/app/lib/api/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 

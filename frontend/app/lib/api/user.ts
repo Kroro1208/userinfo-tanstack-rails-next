@@ -1,4 +1,4 @@
-import api from "../route"
+import api from "."
 
 type Endpoints = {
     getUsers: () => Promise<APISchema.User[]>

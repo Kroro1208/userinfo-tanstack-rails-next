@@ -1,5 +1,5 @@
 "use client"
-import endpoints from "@/app/api/router/route";
+import endpoints from "@/app/lib/api/router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react"

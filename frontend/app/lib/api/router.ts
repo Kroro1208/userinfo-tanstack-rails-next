@@ -1,4 +1,4 @@
-import userEndpoinsts from "../users/route";
+import userEndpoinsts from "./user";
 
 const endpoints = {
     users: userEndpoinsts
