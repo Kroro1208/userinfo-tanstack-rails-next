@@ -31,7 +31,7 @@ const endpoints: Endpoints = {
         })
     },
     deleteUser: async (user: Partial<APISchema.User>) => {
-        return await api(`user/${user.id}`, {
+        return await api(`users/${user.id}`, {
             method: "delete"
         })
     }

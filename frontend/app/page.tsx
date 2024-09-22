@@ -1,5 +1,5 @@
 "use client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import Image from "next/image";
 import HomeImg from "../../homeImg.png";
@@ -7,14 +7,21 @@ import { Trash2 } from 'lucide-react';
 import endpoints from "./api/users/route";
 
 export default function Home() {
-  const { data, refetch, error, isPending } = useQuery({
+  const queryClient = useQueryClient()
+
+  const { data, error, isPending } = useQuery({
     queryKey: ["getUsers"],
     queryFn: endpoints.getUsers
   });
 
   const deleteMutation = useMutation({
     mutationFn: endpoints.deleteUser,
-    onSuccess: () => refetch()
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getUsers"] });
+    },
+    onError: (error) => {
+      console.error("削除エラー:", error);
+    }
   });
 
   if (isPending) return <div className="flex justify-center items-center min-h-screen">情報取得中...</div>
@@ -38,7 +45,7 @@ export default function Home() {
               <div className="w-1/6 flex justify-end">
                 <button
                   type="button"
-                  onClick={() => deleteMutation.mutate(user)}
+                  onClick={() =>window.confirm("本当に削除しますか？") && deleteMutation.mutate(user)}
                   className="text-red-500 hover:text-red-700 transition-colors duration-200"
                 >
                   <Trash2 size={20} />
@@ -50,7 +57,7 @@ export default function Home() {
       </div>
 
       <Link
-        href="/user/create"
+        href="/users/create"
         className="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200"
       >
         新規ユーザー追加
