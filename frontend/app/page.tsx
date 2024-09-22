@@ -1,19 +1,19 @@
 "use client";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import endpoints from "./api/router/route";
 import Link from "next/link";
 import Image from "next/image";
 import HomeImg from "../../homeImg.png";
 import { Trash2 } from 'lucide-react';
+import endpoints from "./api/users/route";
 
 export default function Home() {
   const { data, refetch, error, isPending } = useQuery({
     queryKey: ["getUsers"],
-    queryFn: endpoints.users.getUsers
+    queryFn: endpoints.getUsers
   });
 
   const deleteMutation = useMutation({
-    mutationFn: endpoints.users.deleteUser,
+    mutationFn: endpoints.deleteUser,
     onSuccess: () => refetch()
   });
 
@@ -50,7 +50,7 @@ export default function Home() {
       </div>
 
       <Link
-        href="/users/new"
+        href="/user/create"
         className="mt-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200"
       >
         新規ユーザー追加

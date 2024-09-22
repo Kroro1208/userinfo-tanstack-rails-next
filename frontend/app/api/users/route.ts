@@ -2,17 +2,17 @@ import api from "../route"
 
 type Endpoints = {
     getUsers: () => Promise<APISchema.User[]>
-    getUser: (userId: number) => Promise<APISchema.User[]>
-    createUser: (user: Partial<APISchema.User>) => Promise<APISchema.User[]>
-    updateUser: (user: Partial<APISchema.User>) => Promise<APISchema.User[]>
-    deleteUser: (user: Partial<APISchema.User>) => Promise<APISchema.User[]>
+    getUser: (userId: number) => Promise<APISchema.User>
+    createUser: (user: Partial<APISchema.User>) => Promise<APISchema.User>
+    updateUser: (user: Partial<APISchema.User>) => Promise<APISchema.User>
+    deleteUser: (user: Partial<APISchema.User>) => Promise<APISchema.User>
 }
-const endpoinsts: Endpoints = {
+const endpoints: Endpoints = {
     getUsers: async () => {
         return await api('users')
     },
     getUser: async (userId) => {
-        return await api(`user/${userId}`)
+        return await api(`users/${userId}`)
     },
     createUser: async (user: Partial<APISchema.User>) => {
         return await api('users', {
@@ -38,4 +38,4 @@ const endpoinsts: Endpoints = {
 }
 
 
-export default endpoinsts;
+export default endpoints;

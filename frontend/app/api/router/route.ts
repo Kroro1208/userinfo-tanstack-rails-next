@@ -1,7 +1,7 @@
-import userEndpoinsts from "../user/route";
+import userEndpoinsts from "../users/route";
 
-const endpoinsts = {
+const endpoints = {
     users: userEndpoinsts
 }
 
-export default endpoinsts;
+export default endpoints;
