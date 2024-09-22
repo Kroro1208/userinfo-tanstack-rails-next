@@ -11,7 +11,9 @@ export default function Home() {
 
   const { data, error, isPending } = useQuery({
     queryKey: ["getUsers"],
-    queryFn: endpoints.getUsers
+    queryFn: endpoints.getUsers,
+    refetchOnMount: "always",
+    staleTime: 0
   });
 
   const deleteMutation = useMutation({

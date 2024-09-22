@@ -20,8 +20,8 @@ interface UserPageProps {
     }
 }
 
-const UserPage = (props: UserPageProps) => {
-    const { params: {userId} } = props;
+const UserPage = ({ params }: UserPageProps) => {
+    const { userId } = params;
     const [userState, setUserState] = useState(defaultUserState);
     const { name, email } = userState;
 
