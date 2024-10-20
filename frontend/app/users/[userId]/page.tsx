@@ -49,13 +49,24 @@ const UserPage = ({ params }: UserPageProps) => {
         }
     }, [status, data]);
 
+    const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        updateMutation.mutate({
+            id: userId,
+            name,
+            email
+        })
+        router.push('/');
+        router.refresh();
+    }
+
     if (isPending) return <div>Loading...</div>;
     if (error) return <div>Error: {error instanceof Error ? error.message : 'An error occurred'}</div>;
 
     return (
         <main className="p-4">
             <h1 className="text-2xl font-bold mb-4">{data?.name}の編集</h1>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleUpdate}>
                 <div>
                     <label htmlFor="name" className="block mb-1">名前</label>
                     <input
@@ -82,17 +93,9 @@ const UserPage = ({ params }: UserPageProps) => {
                     />
                 </div>
                 <button
-                    type="button"
+                    type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        updateMutation.mutate({
-                            id: userId,
-                            name,
-                            email
-                        })
-                        router.push('/')
-                    }}>
+                    >
                     保存
                 </button>
             </form>

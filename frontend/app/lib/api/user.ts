@@ -7,7 +7,7 @@ type Endpoints = {
     updateUser: (user: Partial<APISchema.User>) => Promise<APISchema.User>
     deleteUser: (user: Partial<APISchema.User>) => Promise<APISchema.User>
 }
-const endpoints: Endpoints = {
+const userEndpoints: Endpoints = {
     getUsers: async () => {
         return await api('users')
     },
@@ -38,4 +38,4 @@ const endpoints: Endpoints = {
 }
 
 
-export default endpoints;
+export default userEndpoints;
