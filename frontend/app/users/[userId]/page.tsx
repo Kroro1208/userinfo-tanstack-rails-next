@@ -2,6 +2,7 @@
 
 import endpoints from "@/app/lib/api/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface UserState {
@@ -24,6 +25,7 @@ const UserPage = ({ params }: UserPageProps) => {
     const { userId } = params;
     const [userState, setUserState] = useState(defaultUserState);
     const { name, email } = userState;
+    const router = useRouter();
 
     const queryClient = useQueryClient();
     const { data, isPending, error, status } = useQuery({
@@ -35,7 +37,7 @@ const UserPage = ({ params }: UserPageProps) => {
         mutationFn: endpoints.updateUser,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["getUser", userId] })
-        }
+        },
     });
 
     useEffect(() => {
@@ -89,6 +91,7 @@ const UserPage = ({ params }: UserPageProps) => {
                             name,
                             email
                         })
+                        router.push('/')
                     }}>
                     保存
                 </button>

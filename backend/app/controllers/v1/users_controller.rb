@@ -19,7 +19,7 @@ module V1
       @user = User.new(user_params)
 
       if @user.save
-        render :show, status: :created, location: [:v1, @user]
+        render :show, status: :created, location: [:v1, @user] # locationにより@userのIDに基づいて、/v1/users/1 というようなURLが作られる
       else
         render json: @user.errors, status: :unprocessable_entity
       end
@@ -49,6 +49,7 @@ module V1
 
       # Only allow a list of trusted parameters through.
       def user_params
+        # :userを取得して、存在しない場合はデフォルトの空のハッシュ{}を返す
         params.fetch(:user, {}).permit(:name, :email)
       end
   end
